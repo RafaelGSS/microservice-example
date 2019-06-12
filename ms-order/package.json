@@ -1,19 +1,34 @@
 {
   "name": "ms-order",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Just an example of microservice",
+  "main": "server.js",
   "scripts": {
+    "setup": "npm install && npm run knex:migrate",
+    "setup:dev": "npm run setup && npm run knex:seed",
+    "knex:migrate": "knex migrate:latest",
+    "knex:rollback": "knex migrate:rollback",
+    "knex:seed": "knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^8.0.0",
     "fastify": "^2.4.1",
     "fastify-autoload": "^0.8.0",
     "knex": "^0.17.5",
-    "mysql": "^2.17.1"
+    "mysql": "^2.17.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "faker": "^4.1.0"
   }
 }

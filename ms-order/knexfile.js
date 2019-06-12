@@ -1,10 +1,12 @@
+require('dotenv').config()
+
 module.exports = {
-  client: 'pg',
+  client: 'mysql',
     connection: {
-    host: 'localhost',
-    database: 'orders',
-    user: 'root',
-    password: 'toor'
+    host: process.env.DB_HOST || 'localhost',
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASS || 'toor'
   },
   pool: {
     min: 2,
