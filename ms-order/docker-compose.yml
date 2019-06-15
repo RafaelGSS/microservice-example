@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  # API
+  server:
+    container_name: ms-order-api
+    environment:
+      NODE_ENV: development
+      DB_DATABASE: ms
+      DB_USER: admin
+      DB_PASS: toor
+      DB_HOST: "0.0.0.0"
+      DB_PORT: "5432"
+      PORT: "3535"
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    user: "node"
+    working_dir: /home/node/app
+    depends_on:
+      - db
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "3535:3535"
+    command: "npm run startup:dev"
+
+  # BD
+  db:
+    image: postgres:11.2
+    container_name: ms-order-database
+    environment:
+      POSTGRES_DB: ms
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: toor
+    ports:
+      - "5432:5432"

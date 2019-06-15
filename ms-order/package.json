@@ -6,6 +6,7 @@
   "scripts": {
     "setup": "npm install && npm run knex:migrate",
     "setup:dev": "npm run setup && npm run knex:seed",
+    "startup:dev": "npm run setup:dev && node server.js",
     "knex:migrate": "knex migrate:latest",
     "knex:rollback": "knex migrate:rollback",
     "knex:seed": "knex seed:run",
@@ -19,7 +20,7 @@
     "fastify": "^2.4.1",
     "fastify-autoload": "^0.8.0",
     "knex": "^0.17.5",
-    "mysql": "^2.17.1",
+    "pg": "^7.11.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
