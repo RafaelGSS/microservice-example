@@ -9,13 +9,13 @@ networks:
 services:
   # API
   app:
-    container_name: "ms-order-api"
+    container_name: "ms-user-api"
     environment:
       NODE_ENV: development
       DB_DATABASE: ms
       DB_USER: postgres
       DB_PASS: postgres
-      DB_HOST: "ms-order-database"
+      DB_HOST: "ms-user-database"
       DB_PORT: "5432"
       PORT: "3535"
     build: 
@@ -23,22 +23,20 @@ services:
       dockerfile: Dockerfile
     user: "node"
     working_dir: /home/node/app
-    networks:
-      - gateway
-      - cluster-ms
     depends_on:
       - db
     volumes:
       - ./:/home/node/app
-    ports:
-      - "3535:3535"
+    networks:
+      - gateway
+      - cluster-ms
     command: bash -c "while !</dev/tcp/db/5432; do sleep 1; done; npm run startup:dev"
 
   # BD
   db:
     image: postgres:11.2
-    container_name: "ms-order-database"
-    networks: 
+    container_name: "ms-user-database"
+    networks:
       - cluster-ms
     environment:
       POSTGRES_DB: ms
