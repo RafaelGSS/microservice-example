@@ -1,10 +1,10 @@
 const db = require('knex')(require('../knexfile'))
 
 module.exports = (fastify, opts, next) => {
-  fastify.get('/', (request, reply) => {
+  fastify.get('/root/', (request, reply) => {
     reply.send({ dialect: "User", error: false })
   })
-  .get('/users', (request, reply) => {
+  .get('/', (request, reply) => {
     return db('users').then(users => reply.send(users))
   })
   .get('/:id', (request, reply) => {
