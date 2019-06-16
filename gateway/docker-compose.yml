@@ -1,0 +1,25 @@
+version: '3'
+
+networks: 
+  gateway:
+    external: true
+
+services:
+  # API
+  app:
+    container_name: "ms-gateway"
+    environment:
+      NODE_ENV: development
+      PORT: "3000"
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    user: "node"
+    working_dir: /home/node/app
+    networks:
+      - gateway
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "8000:3000"
+    command: "node server.js"

@@ -17,7 +17,9 @@ services:
       DB_PASS: postgres
       DB_HOST: "ms-user-database"
       DB_PORT: "5432"
-      PORT: "3535"
+      PORT: "8080"
+    expose:
+      - "8080"
     build: 
       context: .
       dockerfile: Dockerfile

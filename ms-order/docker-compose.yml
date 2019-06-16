@@ -17,7 +17,9 @@ services:
       DB_PASS: postgres
       DB_HOST: "ms-order-database"
       DB_PORT: "5432"
-      PORT: "3535"
+      PORT: "8080"
+    expose:
+      - "8080"
     build: 
       context: .
       dockerfile: Dockerfile
@@ -30,8 +32,6 @@ services:
       - db
     volumes:
       - ./:/home/node/app
-    ports:
-      - "3535:3535"
     command: bash -c "while !</dev/tcp/db/5432; do sleep 1; done; npm run startup:dev"
 
   # BD
