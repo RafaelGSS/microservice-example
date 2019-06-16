@@ -10,6 +10,7 @@ services:
     container_name: "ms-gateway"
     environment:
       NODE_ENV: development
+      HOST: localhost/api
       PORT: "3000"
     build: 
       context: .
