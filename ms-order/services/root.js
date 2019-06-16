@@ -7,7 +7,7 @@ module.exports = (fastify, opts, next) => {
   .get('/orders', (request, reply) => {
     return db('orders').then(orders => reply.send(orders))
   })
-  .get('/:id/orders', (request, reply) => {
+  .get('/:id', (request, reply) => {
     return db('orders').where({ id: request.params.id }).then(orders => reply.send(orders))
   })
   .get('/user/:id/orders', (request, reply) => {
