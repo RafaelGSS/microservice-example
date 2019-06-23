@@ -7,6 +7,10 @@ const AutoLoad = require('fastify-autoload')
 
 const path = require('path')
 
+fastify.register(require('fastify-amqp'), {
+  host: 'localhost'
+})
+
 fastify.register(AutoLoad, {
   dir: path.join(__dirname, 'services')
 })

@@ -13,5 +13,17 @@ module.exports = (fastify, opts, next) => {
   .get('/:id/orders', (request, reply) => {
     return db('orders').where({ id_user: request.params.id }).then(orders => reply.send(orders))
   })
+  .get('/send', function (request, reply) {
+    const queue = 'hello'
+    const msg = 'Hello world from Orders'
+
+    this.amqpChannel.assertQueue(queue, {
+      durable: false
+    })
+    
+    this.amqpChannel.sendToQueue(queue, Buffer.from(msg))
+    reply.send(' [x] Sent ' + msg)
+  })
+
   next()
 }
