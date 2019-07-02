@@ -29,7 +29,7 @@ module.exports = (fastify, opts, next) => {
       }
       db('users').insert(data)
         .then(u => {
-          const queue = 'users'
+          const queue = 'users_created'
 
           this.amqpChannel.assertQueue(queue, {
             durable: false

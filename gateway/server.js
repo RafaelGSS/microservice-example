@@ -8,6 +8,8 @@ const proxy = require('redbird')({ port })
 // User Ms redirect
 proxy.register(host + '/root/users', "ms-user-api:8080/root")
 proxy.register(host + '/users', "ms-user-api:8080/")
+// TODO: POST
+// proxy.register(host + '/users', "ms-user-api:8080/")
 
 
 // Order Ms redirect

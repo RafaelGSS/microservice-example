@@ -8,7 +8,7 @@ const AutoLoad = require('fastify-autoload')
 const path = require('path')
 
 fastify.register(require('fastify-amqp'), {
-  host: 'localhost'
+  host: 'rabbitmq'
 })
 
 fastify.register(AutoLoad, {
