@@ -4,6 +4,10 @@ INIT_PATH=$(pwd)
 cd "$INIT_PATH/gateway";
 docker-compose up -d --build
 
+# Up RabbitMQ
+cd "$INIT_PATH/messager-queue";
+docker-compose up -d --build
+
 # UP Users
 cd "$INIT_PATH/ms-user";
 docker-compose up -d --build
