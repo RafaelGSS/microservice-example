@@ -12,20 +12,7 @@ fastify.register(require('fastify-amqp'), {
 })
 
 // Cron for create order
-// TODO: Continue it
-const queue = 'users_created'
-fastify.amqpChannel.assertQueue(queue)
-fastify.amqpChannel.consume(queue, function (msg) {
-  if (msg !== null) {
-    console.log('%s Received: %s', new Date(), msg.content.toString())
-    fastify.inject({
-      method: 'POST',
-      url: '/',
-      payload: ''
-    })
-    ch.ack(msg)
-  }
-})
+fastify.register(require('./messagers'))
 
 fastify.register(AutoLoad, {
   dir: path.join(__dirname, 'services')

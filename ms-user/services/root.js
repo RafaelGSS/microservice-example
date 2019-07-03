@@ -35,7 +35,7 @@ module.exports = (fastify, opts, next) => {
             durable: false
           })
 
-          this.amqpChannel.sendToQueue(queue, Buffer.from(JSON.stringify(datar)))
+          this.amqpChannel.sendToQueue(queue, Buffer.from(JSON.stringify(data)))
           reply.send(' [V] Sended ' + JSON.stringify(data))
         })
         .catch(e => {
