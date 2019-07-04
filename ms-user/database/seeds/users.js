@@ -1,3 +1,4 @@
+const uuid = require('uuid/v4')
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
@@ -5,9 +6,9 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
-        { id: 1, name: 'Calzaroli Edward', email: 'calzaroli.edward@fake.com', admin: true },
-        { id: 2, name: 'Robert John', email: 'robert.john@fake.com', admin: true },
-        { id: 3, name: 'Adan Jhonson', email: 'adan.jhonson@fake.com', admin: false },
+        { id: uuid(), name: 'Calzaroli Edward', email: 'calzaroli.edward@fake.com', admin: true },
+        { id: uuid(), name: 'Robert John', email: 'robert.john@fake.com', admin: true },
+        { id: uuid(), name: 'Adan Jhonson', email: 'adan.jhonson@fake.com', admin: false },
       ]);
     });
 };

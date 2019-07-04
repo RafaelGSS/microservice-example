@@ -1,4 +1,5 @@
 const db = require('knex')(require('../knexfile'))
+const uuid = require('uuid/v4')
 
 module.exports = (fastify, opts, next) => {
   fastify.get('/root/', (request, reply) => {
@@ -17,22 +18,23 @@ module.exports = (fastify, opts, next) => {
           type: 'object',
           properties: {
             name: { type: 'string' },
-            description: { type: 'string' },
+            email: { type: 'string' },
           },
-          required: ['name', 'description']
+          required: ['name', 'email']
         }
       }
     }, function (request, reply) {
       const data = {
+        id: uuid(),
         name: request.body.name,
-        description: request.body.description,
+        email: request.body.email,
       }
       db('users').insert(data)
         .then(u => {
           const queue = 'users_created'
 
           this.amqpChannel.assertQueue(queue, {
-            durable: false
+            durable: true
           })
 
           this.amqpChannel.sendToQueue(queue, Buffer.from(JSON.stringify(data)))
