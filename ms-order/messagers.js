@@ -9,6 +9,9 @@ module.exports = (fastify, opts, next) => {
       //   method: 'POST',
       //   url: '/',
       //   payload: ''
+      // }).then(data => {
+        
+      // })
       fastify.amqpChannel.ack(msg)
     }
   })
